@@ -8,6 +8,8 @@ def emotionDetector():
     text_to_analyze = request.args.get('text')
     emotions = emotion_detector(text_to_analyze)
     dominant_emotion = emotions['dominant_emotion']
+    if dominant_emotion == None:
+        return 'Invalid text! Please try again!'
     del emotions['dominant_emotion']
     return f'For the given statement, the system response is {str(emotions)[1:-1]}. The dominant emotion is {dominant_emotion}'
 
